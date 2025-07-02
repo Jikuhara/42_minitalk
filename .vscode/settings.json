@@ -1,0 +1,35 @@
+{
+    // ホワイトスペース（空白・タブ）の可視化
+    "editor.renderWhitespace": "all",
+
+    // タブサイズの設定
+    "editor.tabSize": 4,
+    "editor.insertSpaces": false,
+    "editor.detectIndentation": false,
+
+    // 行末の空白をハイライト
+    "editor.renderFinalNewline": "on",
+
+    // 行の最後にある空白を自動で削除
+    "files.trimTrailingWhitespace": true,
+
+    // ファイル保存時に最後に改行を挿入
+    "files.insertFinalNewline": true,
+
+    // 42スクールのノルムに合わせた設定
+    "editor.rulers": [80],
+    "editor.wordWrap": "off",
+
+    // C言語の設定
+    "[c]": {
+        "editor.tabSize": 4,
+        "editor.insertSpaces": false,
+        "editor.detectIndentation": false
+    },
+
+    // Makefileの設定（タブが必須）
+    "[makefile]": {
+        "editor.insertSpaces": false,
+        "editor.detectIndentation": false
+    }
+}
