@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 14:49:05 by kei2003730        #+#    #+#             */
-/*   Updated: 2025/07/04 15:07:41 by kei2003730       ###   ########.fr       */
+/*   Updated: 2025/07/04 15:09:14 by kei2003730       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,12 @@
 #include <signal.h>
 #include <stdlib.h>
 
-void signal_hundler(int signum)
-{
-	printf("hello world!");
-	exit(0);
-}
-
-int	main(void)
+int	main(int argc, char *argv[])
 {
 	pid_t server_pid;
 
-	server_pid = getpid();
+	server_pid = atoi(argv[1]);
 	printf("parent PID = %i\n", server_pid);
-	signal(SIGALRM, signal_hundler);
-	while (1)
-	{}
+	kill(server_pid, SIGALRM); /* なに送信したら良いか分からん。 */
 	return (0);
 }
