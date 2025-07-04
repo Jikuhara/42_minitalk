@@ -6,7 +6,7 @@
 /*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 14:49:05 by kei2003730        #+#    #+#             */
-/*   Updated: 2025/07/04 15:32:31 by kei2003730       ###   ########.fr       */
+/*   Updated: 2025/07/04 15:38:11 by kei2003730       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdio.h>
 #include <signal.h>
 #include <stdlib.h>
+#include <string.h>
 
 // int	main(int argc, char *argv[])
 // {
@@ -28,7 +29,17 @@
 
 int main(int argc, char const *argv[])
 {
-	
+	int num;
+
+	for (size_t i = 0; i < argc; i++)
+	{
+		for (size_t j = 0; j < strlen(argv[i]); j++)
+		{
+			num = argv[i][j];
+			printf("argv[%zu][%zu] = %i (%c)\n", i , j, num, argv[i][j]);
+		}
+		printf("\n");
+	}
 	return 0;
 }
 
