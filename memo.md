@@ -161,6 +161,39 @@ clientは、サーバーのプロセスIDを引数として受け取る。
 Serverファイルを実行して、プロセスID出力して、クライアントに渡すだけやん。
 なんか、めっちゃ出来そう。
 
+# serverの実装
+とりあえず、serverの実装を始める。
+server.cを作成して、必要なヘッダーファイルをインクルードする。
+とりあえず、PIDの取得と出力をやってみる。
+getpid()関数を使用して、プロセスIDを取得する。
+これ返り値の構造体何？？pid_t型ってなんや？
+- [C言語のpid_tを調べる](https://t0m00m0t.hatenablog.com/entry/2018/03/06/231110)
+
+fcntl.hに定義されていた。
+```c
+#ifndef __pid_t_defined
+typedef __pid_t pid_t;
+# define __pid_t_defined
+#endif
+```
+__pid_tは??
+```c
+kei2003730@JikuPC ~/A/4/w/src (master)> grep -rnw /usr -e '__pid_t'
+/usr/include/x86_64-linux-gnu/bits/types.h:154:__STD_TYPE __PID_T_TYPE __pid_t; /* Type of process identifications.  */
+```
+
+__PID_T_TYPEは？
+```c
+kei2003730@JikuPC ~/A/4/w/src (master) [SIGINT]> grep -rnw /usr -e '__PID_T_TYPE'
+/usr/include/x86_64-linux-gnu/bits/typesizes.h:53:#define __PID_T_TYPE          __S32_TYPE
+```
+
+__S32_TYPEは？
+```c
+/usr/include/x86_64-linux-gnu/bits/types.h:111:#define  __S32_TYPE              int
+```
+intかーい。
+
 
 ### やること。
 - [ ] server の実装
