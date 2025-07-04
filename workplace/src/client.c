@@ -6,7 +6,7 @@
 /*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 14:49:05 by kei2003730        #+#    #+#             */
-/*   Updated: 2025/07/04 15:52:16 by kei2003730       ###   ########.fr       */
+/*   Updated: 2025/07/04 15:54:24 by kei2003730       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int main(int argc, char const *argv[])
 {
 	int num;
 
-	for (size_t i = 0; i < argc; i++)
+	for (size_t i = 1; i < argc; i++)
 	{
 		for (size_t j = 0; j < strlen(argv[i]); j++)
 		{
