@@ -6,7 +6,7 @@
 #    By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/30 14:37:47 by kjikuhar          #+#    #+#              #
-#    Updated: 2025/07/02 20:31:29 by kjikuhar         ###   ########.fr        #
+#    Updated: 2025/07/24 19:01:48 by kjikuhar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,6 +78,7 @@ $(NAME): $(LIBFT_A) $(OBJS_MAND)
 	@echo "    You can use My $(NAME)!!"
 	@echo "=========================================$(RESET)"
 
+
 # compile object files
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
@@ -123,24 +124,5 @@ test: norm leak
 	@echo "$(GREEN)$(BOLD)========================================="
 	@echo "    All tests completed!"
 	@echo "=========================================$(RESET)"
-
-# デバッグビルド（fsanitize付き）
-debug: CFLAGS := -Wall -Wextra -Werror -Iincludes -Ilibft -g -fsanitize=address
-debug: re
-	@echo "$(YELLOW)$(BOLD)Debug build completed with fsanitize!$(RESET)"
-
-# 軽量テスト（引数チェックのみ）
-quicktest: $(NAME)
-	@echo "$(BLUE)$(BOLD)========================================="
-	@echo "    Quick Test..."
-	@echo "=========================================$(RESET)"
-	@echo "Testing with no arguments:"
-	@./$(NAME) || true
-	@echo "Testing with wrong extension:"
-	@./$(NAME) test.txt || true
-	@echo "Testing with no file:"
-	@./$(NAME) || true
-	@echo "$(GREEN)$(BOLD)Quick test completed!$(RESET)"
-
 
 .PHONY: all clean fclean re norm leak test debug quicktest

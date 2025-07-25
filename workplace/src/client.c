@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 14:49:05 by kei2003730        #+#    #+#             */
-/*   Updated: 2025/07/07 20:52:05 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2025/07/24 22:37:18 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,21 @@ int send_char(pid_t server_pid, char c)
 				return (-1);
 			}
 		}
-		usleep(100);
+		usleep(1000);
 	}
 	return (0);
+}
+
+void	handler2(int sig)
+{
+	printf("every thing it's all right\n");
 }
 
 int send_string(pid_t server_pid, char *str)
 {
 	int i = 0;
 
+	signal(SIGUSR2, handler2);
 	while (str[i])
 	{
 		if (send_char(server_pid, str[i]) == -1)
@@ -57,33 +63,33 @@ int send_string(pid_t server_pid, char *str)
 	return (0);
 }
 
-int	send_client_pid(pid_t server_pid)
-{
-	pid_t client_pid;
-	int bit;
+// int	send_client_pid(pid_t server_pid)
+// {
+// 	pid_t client_pid;
+// 	int bit;
 
-	client_pid = get_pid();
-	for (int i = 0; i < 32; i++)
-	{
-		bit = (client_pid >> i) & 1;
-		if (bit == 0)
-		{
-			if (kill(server_pid, SIGUSR1) == -1)
-			{
-				return (-1);
-			}
-		}
-		else
-		{
-			if (kill(server_pid, SIGUSR2) == -1)
-			{
-				return (-1);
-			}
-		}
-		usleep(100);
-	}
-	return (0);
-}
+// 	client_pid = getpid();
+// 	for (int i = 0; i < 32; i++)
+// 	{
+// 		bit = (client_pid >> i) & 1;
+// 		if (bit == 0)
+// 		{
+// 			if (kill(server_pid, SIGUSR1) == -1)
+// 			{
+// 				return (-1);
+// 			}
+// 		}
+// 		else
+// 		{
+// 			if (kill(server_pid, SIGUSR2) == -1)
+// 			{
+// 				return (-1);
+// 			}
+// 		}
+// 		usleep(100);
+// 	}
+// 	return (0);
+// }
 
 int main(int argc, char const *argv[])
 {
@@ -100,12 +106,13 @@ int main(int argc, char const *argv[])
 		printf("Error: Invalid server PID\n");
 		return (1);
 	}
-	if (send_client_pid(server_pid) == -1)
-	{
-		return (-1);
-	}
+	// if (send_client_pid(server_pid) == -1)
+	// {
+	// 	return (-1);
+	// }
 	if (send_string(server_pid, (char *)argv[2]) == -1)
 	{
+		printf("your input server PID is wrong.\n");
 		return (-1);
 	}
 	return (0);

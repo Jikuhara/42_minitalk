@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kei2003730 <kei2003730@student.42.fr>      +#+  +:+       +#+        */
+/*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 20:45:40 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/07/04 16:20:22 by kei2003730       ###   ########.fr       */
+/*   Updated: 2025/07/24 22:27:17 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,17 @@
 # include <string.h>
 # include <sys/types.h>
 
+typedef struct	s_status
+{
+	pid_t	client_pid;
+	size_t	current_char;
+	size_t	bit_count;
+}			t_status;
 // Client functions
-void	send_char(pid_t server_pid, char c);
-void	send_string(pid_t server_pid, char *str);
+int	send_char(pid_t server_pid, char c);
+int	send_string(pid_t server_pid, char *str);
 
 // Server functions
-void	signal_handler(int signal);
+// void	*signal_handler(int signal);
 
 #endif
