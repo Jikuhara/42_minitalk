@@ -6,52 +6,12 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 14:49:05 by kei2003730        #+#    #+#             */
-/*   Updated: 2025/07/28 18:38:42 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2025/07/28 22:26:07 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define _POSIX_C_SOURCE 200809L
 #include "minitalk.h"
-
-// t_status						g_status;
-
-// void	set_status(void)
-// {
-// 	g_status.client_pid = 0;
-// 	g_status.current_char = 0;
-// 	g_status.bit_count = 0;
-// }
-
-// void	signal_handler(int signal, siginfo_t *info, void *context)
-// {
-// 	(void)context;
-// 	if (g_status.client_pid != info->si_pid)
-// 		set_status();
-// 	else if (signal == SIGUSR2)
-// 	{
-// 		g_status.current_char |= (1 << g_status.bit_count);
-// 		kill(info->si_pid, SIGUSR2);
-// 	}
-// 	else
-// 	{
-// 		kill(info->si_pid, SIGUSR1);
-// 	}
-// 	g_status.bit_count++;
-// 	if (g_status.bit_count == 8)
-// 	{
-// 		if (g_status.current_char == 0)
-// 		{
-// 			write(1, "\n", 1);
-// 			kill(info->si_pid, SIGUSR2);
-// 		}
-// 		else
-// 		{
-// 			write(1, &g_status.current_char, 1);
-// 		}
-// 		set_status();
-// 	}
-// 	g_status.client_pid = info->si_pid;
-// }
 
 static volatile sig_atomic_t	busy = 0;
 static volatile pid_t			client_pid = 0;
@@ -99,7 +59,7 @@ void	handle_signal(int signo, siginfo_t *info, void *ctx)
 	}
 	else if (length_receiving == 0)
 	{
-		// --- receive message bytes ---
+		// receive message
 		current_char |= (bit << bit_count);
 		bit_count++;
 		if (bit_count == 8)
