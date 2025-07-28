@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 14:49:05 by kei2003730        #+#    #+#             */
-/*   Updated: 2025/07/28 22:26:07 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2025/07/28 23:05:25 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ void	handle_signal(int signo, siginfo_t *info, void *ctx)
 	{
 		msg_len |= ((uint32_t)bit << len_bits);
 		len_bits++;
-		printf("bit: %d\n", bit);
+		kill(sender, SIGUSR2);
+		pause();
 		if (len_bits == 32)
 		{
 			length_receiving = 0;
-			printf("msg_length: %d\n", msg_len);
 		}
 	}
 	else if (length_receiving == 0)
@@ -62,6 +62,8 @@ void	handle_signal(int signo, siginfo_t *info, void *ctx)
 		// receive message
 		current_char |= (bit << bit_count);
 		bit_count++;
+		kill(sender, SIGUSR2);
+		pause();
 		if (bit_count == 8)
 		{
 			write(1, &current_char, 1);

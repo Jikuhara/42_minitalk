@@ -6,7 +6,7 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 20:45:40 by kjikuhar          #+#    #+#             */
-/*   Updated: 2025/07/28 18:38:18 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2025/07/28 22:38:19 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_status
 // Client functions
 int			send_char(pid_t server_pid, char c);
 int			send_string(pid_t server_pid, char *str);
+void		ack_handler(int signo);
 bool		check_connection_to_server(pid_t server_pid);
 
 // Server functions
