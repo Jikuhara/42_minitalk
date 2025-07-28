@@ -6,43 +6,11 @@
 /*   By: kjikuhar <kjikuhar@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/04 14:49:05 by kei2003730        #+#    #+#             */
-/*   Updated: 2025/07/28 18:38:52 by kjikuhar         ###   ########.fr       */
+/*   Updated: 2025/07/28 18:51:39 by kjikuhar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
-
-// int	send_hash_num_to_server(pid_t server_pid)
-// {
-
-// }
-
-// bool	wait_to_receive_confirmation_from_Server(void)
-// {
-// 	bool	confirmation;
-
-// 	confirmation = receive_confirmation();
-// 	pause();
-// 	if (confirmation == false)
-// 	{
-// 		printf("your input server PID is wrong.\n");
-// 		return (false);
-// 	}
-// 	else if (confirmation == true)
-// 	{
-// 		return (true);
-// 	}
-// }
-
-// int	check_connection_to_server(pid_t server_pid)
-// {
-// 	send_hash_num_to_server(server_pid);
-// 	sleep(1);
-// 	if (wait_to_receive_confirmation_from_Server() == false)
-// 	{
-// 		return (false);
-// 	}
-// }
 
 void	send_bits(pid_t server_pid, uint32_t val, int cnt)
 {
@@ -101,6 +69,7 @@ bool	send_info_to_server(pid_t server_pid, const char *msg)
 		return (false);
 	if (send_msg(server_pid, msg) == false)
 		return (false);
+	printf("every thing it's all right!\n");
 	return (true);
 }
 
